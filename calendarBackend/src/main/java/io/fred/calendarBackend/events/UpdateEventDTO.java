@@ -16,7 +16,7 @@ public class UpdateEventDTO {
 	
 	private Integer location;
 	
-	private Integer[] labels;
+	private Integer label;
 
 	public String getTitle() {
 		return title;
@@ -34,7 +34,7 @@ public class UpdateEventDTO {
 		return location;
 	}
 
-	public Integer[] getLabels() {
-		return labels;
+	public Integer getLabels() {
+		return label;
 	}
 }

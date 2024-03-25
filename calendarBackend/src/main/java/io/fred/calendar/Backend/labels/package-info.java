@@ -1,1 +1,0 @@
-package io.fred.calendar.Backend.labels;

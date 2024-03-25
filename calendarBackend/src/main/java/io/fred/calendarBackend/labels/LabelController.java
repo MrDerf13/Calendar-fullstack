@@ -1,4 +1,4 @@
-package io.fred.calendar.Backend.labels;
+package io.fred.calendarBackend.labels;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,26 +35,26 @@ public class LabelController {
 		return new ResponseEntity<>(allCategories, HttpStatus.OK);
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<Label> getLabelById(@PathVariable Long id) throws NotFoundException {
-		Optional<Label> maybeLabel = this.labelService.findById(id);
-		Label foundLabel = maybeLabel.orElseThrow(() -> new NotFoundException(Label.class, id));
-		return new ResponseEntity<>(foundLabel, HttpStatus.OK);
-	}
+//	@GetMapping("/{id}")
+//	public ResponseEntity<Label> getLabelById(@PathVariable Long id) throws NotFoundException {
+//		Optional<Label> maybeLabel = this.labelService.findById(id);
+//		Label foundLabel = maybeLabel.orElseThrow(() -> new NotFoundException(Label.class, id));
+//		return new ResponseEntity<>(foundLabel, HttpStatus.OK);
+//	}
 	
-	@PatchMapping("/{id}")
-	public ResponseEntity<Label> updateLabelById(@Valid @RequestBody UpdateLabelDTO data, @PathVariable Long id) throws NotFoundException, ServiceValidationException {
-		Optional<Label> maybeUpdatedLabel = this.labelService.updateById(data, id);
-		Label updatedLabel = maybeUpdatedLabel.orElseThrow(() -> new NotFoundException(Label.class, id));
-		return new ResponseEntity<>(updatedLabel, HttpStatus.OK);
-	}
+//	@PatchMapping("/{id}")
+//	public ResponseEntity<Label> updateLabelById(@Valid @RequestBody UpdateLabelDTO data, @PathVariable Long id) throws NotFoundException, ServiceValidationException {
+//		Optional<Label> maybeUpdatedLabel = this.labelService.updateById(data, id);
+//		Label updatedLabel = maybeUpdatedLabel.orElseThrow(() -> new NotFoundException(Label.class, id));
+//		return new ResponseEntity<>(updatedLabel, HttpStatus.OK);
+//	}
 	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Label> deleteLabelById(@PathVariable Long id) throws NotFoundException {
-		boolean deleted = this.labelService.deleteLabelById(id);
-		if(!deleted) {
-			throw new NotFoundException(Label.class, id);
-		}
-		return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-	}
+//	@DeleteMapping("/{id}")
+//	public ResponseEntity<Label> deleteLabelById(@PathVariable Long id) throws NotFoundException {
+//		boolean deleted = this.labelService.deleteLabelById(id);
+//		if(!deleted) {
+//			throw new NotFoundException(Label.class, id);
+//		}
+//		return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+//	}
 }

@@ -1,4 +1,4 @@
-package io.fred.calendar.Backend.labels;
+package io.fred.calendarBackend.labels;
 
 import java.util.List;
 
@@ -16,18 +16,27 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="labels")
 public class Label {
-	@OneToMany(mappedBy = "label")
-	@JsonIgnoreProperties("label")
-	private List<Event> events;
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Column(unique = true)
 	private String name;
 	
-
+	@OneToMany(mappedBy = "label")
+	@JsonIgnoreProperties("label")
+	private List<Event> events;
+	
 	public List<Event> getEvents() {
 		return events;
 	}

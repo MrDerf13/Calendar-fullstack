@@ -1,4 +1,4 @@
-package io.fred.calendar.Backend.labels;
+package io.fred.calendarBackend.labels;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

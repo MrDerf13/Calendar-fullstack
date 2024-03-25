@@ -2,24 +2,28 @@ package io.fred.calendarBackend.events;
 
 import java.time.LocalDateTime;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class CreateEventDTO {
 	@NotBlank
-	private String title;
+	private String name;
 	
-	@NotBlank
+	@NotNull
 	private LocalDateTime startDate;
 	
-	@NotBlank
+	@NotNull
 	private LocalDateTime endDate;
-	
-	private Integer location;
-	
-	private Integer[] labels;
 
-	public String getTitle() {
-		return title;
+	private String location;
+
+	@NotNull
+	@Min(1)
+	private Long labelId;
+
+	public String getName() {
+		return name;
 	}
 	
 	public LocalDateTime getStartDate() {
@@ -30,11 +34,12 @@ public class CreateEventDTO {
 		return endDate;
 	}
 
-	public Integer getLocation() {
+	public String getLocation() {
 		return location;
 	}
-
-	public Integer[] getLabels() {
-		return labels;
+	
+	
+	public Long getLabelId() {
+		return labelId;
 	}
 }

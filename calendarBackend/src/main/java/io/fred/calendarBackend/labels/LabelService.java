@@ -1,4 +1,4 @@
-package io.fred.calendar.Backend.labels;
+package io.fred.calendarBackend.labels;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +16,8 @@ public class LabelService {
 	private LabelRepository repo;
 
 	public Label create(@Valid CreateLabelDTO data) {
-		Label newLabel = mapper.map(data, Label.class);
+		Label newLabel = new Label();
+		newLabel.setName(data.getName().toLowerCase());
 		return this.repo.save(newLabel);
 	}
 
