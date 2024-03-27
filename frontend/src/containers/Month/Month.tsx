@@ -11,6 +11,7 @@ export interface MonthProps {
 
 const Month = ({ year, month }: MonthProps) => {
   const [showModal, setShowModal] = useState(false);
+  const [dayId, setDayId] = useState("");
   const currentMonthArray = daysOfMonth(year, month);
   const firstDayOfMonth = currentMonthArray[0].dayOfWeek;
 
@@ -30,8 +31,6 @@ const Month = ({ year, month }: MonthProps) => {
   );
 
   const today = new Date().toLocaleDateString("en-GB");
-  console.log(new Date().getMonth());
-  console.log(month);
 
   return (
     <div>
@@ -39,34 +38,40 @@ const Month = ({ year, month }: MonthProps) => {
         {leadingDaysArray.map((date, index) => (
           <DayCard
             key={date.dateFull.toLocaleDateString("en-GB")}
+            dateFormatted={date.dateFull.toLocaleDateString("en-GB")}
             index={index}
             date={date.date}
             month={month - 1}
             isToday={date.dateFull.toLocaleDateString("en-GB") === today}
             isThisMonth={date.dateFull.getMonth() + 1 === month}
             fn={setShowModal}
+            setDayId={setDayId}
           />
         ))}
         {currentMonthArray.map((date, index) => (
           <DayCard
             key={date.dateFull.toLocaleDateString("en-GB")}
+            dateFormatted={date.dateFull.toLocaleDateString("en-GB")}
             index={index}
             date={date.date}
             month={month}
             isToday={date.dateFull.toLocaleDateString("en-GB") === today}
             isThisMonth={date.dateFull.getMonth() + 1 === month}
             fn={setShowModal}
+            setDayId={setDayId}
           />
         ))}
         {trailingDaysArray.map((date, index) => (
           <DayCard
             key={date.dateFull.toLocaleDateString("en-GB")}
+            dateFormatted={date.dateFull.toLocaleDateString("en-GB")}
             index={index}
             date={date.date}
             month={month + 1}
             isToday={date.dateFull.toLocaleDateString("en-GB") === today}
             isThisMonth={date.dateFull.getMonth() + 1 === month}
             fn={setShowModal}
+            setDayId={setDayId}
           />
         ))}
       </section>
@@ -80,7 +85,7 @@ const Month = ({ year, month }: MonthProps) => {
           X
         </button>
         <h3>{}</h3>
-        <EventForm />
+        <EventForm clickedDate={dayId} />
       </dialog>
     </div>
   );
