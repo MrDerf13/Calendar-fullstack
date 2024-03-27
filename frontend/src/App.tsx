@@ -33,7 +33,7 @@ function App() {
   };
 
   return (
-    <body className={styles.global}>
+    <div className={styles.global}>
       <h3 className={styles.chip}>
         <button className={styles.buttonHome} onClick={decrementMonth}>
           {"<"}
@@ -45,7 +45,7 @@ function App() {
       </h3>
       <Header />
       <Month year={currYear} month={currMonth} />
-    </body>
+    </div>
   );
 }
 

@@ -4,6 +4,21 @@
   box-sizing: border-box;
   padding: 5px;
   &:hover {
-    background: rgba(grey, 0.1);
+    outline: 1px solid rgb(15, 108, 189);
   }
+}
+
+.today {
+  background-color: rgb(15, 108, 189);
+  color: white;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notThisMonth {
+  background: rgba(grey, 0.1);
 }

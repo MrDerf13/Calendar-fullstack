@@ -1,0 +1,61 @@
+.days {
+  width: calc(100% / 7);
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.daysContainer {
+  display: flex;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.monthYearContainer {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.changeArrows {
+  > span {
+    margin-right: 5px;
+    padding: 5px;
+    &:hover {
+      background-color: gainsboro;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.outerWrapper {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  min-width: 200px;
+  max-width: 210px;
+  position: absolute;
+  bottom: 200px;
+  left: 40px;
+  z-index: 1000;
+  &__hidden {
+    display: none;
+  }
+}
+.calCont {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.daySelect {
+  width: calc(100% / 7);
+  text-align: center;
+  &:hover {
+    outline: 1px solid rgb(15, 108, 189);
+  }
+}

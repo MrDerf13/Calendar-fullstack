@@ -1,11 +1,10 @@
-import { daysOfMonth } from "../../helpers/helpers";
+import { daysOfMonth, daysOfWeek } from "../../helpers/helpers";
 import DayCard from "../../components/DayCard/DayCard";
 import styles from "./Month.module.scss";
-import { daysOfWeek } from "../../helpers/helpers";
-
 import { useState } from "react";
+import EventForm from "../../components/EventForm/EventForm";
 
-interface MonthProps {
+export interface MonthProps {
   year: number;
   month: number;
 }
@@ -14,16 +13,8 @@ const Month = ({ year, month }: MonthProps) => {
   const [showModal, setShowModal] = useState(false);
   const currentMonthArray = daysOfMonth(year, month);
   const firstDayOfMonth = currentMonthArray[0].dayOfWeek;
-  const previousMonth = month - 1 < 0 ? 11 : month - 1;
-  const nextMonth = month + 1 > 11 ? 1 : month + 1;
-  const currentYear = year;
-  const previousYear = year - 1;
-  const nextYear = year + 1;
 
-  const previousMonthArray = daysOfMonth(
-    previousMonth == 12 ? previousYear : currentYear,
-    previousMonth
-  );
+  const previousMonthArray = daysOfMonth(year, month - 1);
 
   const leadingDaysArray = previousMonthArray.slice(
     previousMonthArray.length - daysOfWeek.indexOf(firstDayOfMonth),
@@ -31,45 +22,66 @@ const Month = ({ year, month }: MonthProps) => {
   );
 
   const trailingDaysNeeded =
-    35 - leadingDaysArray.length - currentMonthArray.length - 1;
+    42 - leadingDaysArray.length - currentMonthArray.length;
 
-  const trailingDaysArray = daysOfMonth(
-    nextMonth === 1 ? nextYear : currentYear,
-    nextMonth
-  ).slice(0, trailingDaysNeeded >= 0 ? trailingDaysNeeded : 0);
+  const trailingDaysArray = daysOfMonth(year, month + 1).slice(
+    0,
+    trailingDaysNeeded >= 0 ? trailingDaysNeeded : 0
+  );
+
+  const today = new Date().toLocaleDateString("en-GB");
+  console.log(new Date().getMonth());
+  console.log(month);
 
   return (
     <div>
       <section className={styles.monthContainer}>
         {leadingDaysArray.map((date, index) => (
           <DayCard
-            key={date.date & index}
+            key={date.dateFull.toLocaleDateString("en-GB")}
             index={index}
             date={date.date}
             month={month - 1}
-            fn={() => setShowModal(true)}
+            isToday={date.dateFull.toLocaleDateString("en-GB") === today}
+            isThisMonth={date.dateFull.getMonth() + 1 === month}
+            fn={setShowModal}
           />
         ))}
         {currentMonthArray.map((date, index) => (
           <DayCard
-            key={date.date & index}
+            key={date.dateFull.toLocaleDateString("en-GB")}
             index={index}
             date={date.date}
             month={month}
-            fn={() => setShowModal(true)}
+            isToday={date.dateFull.toLocaleDateString("en-GB") === today}
+            isThisMonth={date.dateFull.getMonth() + 1 === month}
+            fn={setShowModal}
           />
         ))}
         {trailingDaysArray.map((date, index) => (
           <DayCard
-            key={date.date & index}
+            key={date.dateFull.toLocaleDateString("en-GB")}
             index={index}
             date={date.date}
             month={month + 1}
-            fn={() => setShowModal(true)}
+            isToday={date.dateFull.toLocaleDateString("en-GB") === today}
+            isThisMonth={date.dateFull.getMonth() + 1 === month}
+            fn={setShowModal}
           />
         ))}
       </section>
-      <dialog open={showModal}>Hello</dialog>
+      <dialog open={showModal} className={styles.dialogBase}>
+        <button
+          onClick={() => {
+            setShowModal(false);
+          }}
+          className={styles.closeBtn}
+        >
+          X
+        </button>
+        <h3>{}</h3>
+        <EventForm />
+      </dialog>
     </div>
   );
 };

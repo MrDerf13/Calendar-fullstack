@@ -1,0 +1,76 @@
+.wholeForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 70vh;
+}
+
+.textInput {
+  font-family: inherit;
+  font-size: 20px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+}
+
+.dateInput {
+  font-family: inherit;
+  font-size: 16px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+  &:focus {
+    outline: 1.5px solid rgb(38, 132, 255);
+  }
+}
+
+.calendarImg {
+  position: relative;
+  right: 40px;
+}
+
+.title {
+  font-size: 36px;
+}
+
+.timeSelect {
+  font-family: inherit;
+  font-size: 16px;
+  width: fit-content;
+  padding: 10px;
+}
+
+.submitBtn {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 10px;
+  align-items: center;
+  font-family: inherit;
+  font-size: 20px;
+  color: white;
+  background-color: rgb(15, 108, 189);
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: rgb(10, 73, 126);
+  }
+  > img {
+    margin-right: 10px;
+  }
+}
+
+.inputWrapper {
+  display: inline-flex;
+  align-items: center;
+  & img {
+    margin-right: 10px;
+    height: 32px;
+    width: 32px;
+  }
+}

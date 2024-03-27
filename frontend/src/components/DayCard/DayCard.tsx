@@ -5,13 +5,25 @@ interface DayCardProps {
   date: number;
   month: number;
   index: number;
-  fn: () => void;
+  isToday: boolean;
+  isThisMonth: boolean;
+  fn: (arg: boolean) => void;
 }
 
-const DayCard = ({ date, month, index, fn }: DayCardProps) => {
+const DayCard = ({
+  date,
+  month,
+  index,
+  isToday,
+  isThisMonth,
+  fn,
+}: DayCardProps) => {
+  const thisMonth = !isThisMonth ? styles.notThisMonth : "";
+  const today = isToday ? styles.today : "";
+
   return (
-    <article className={styles.card} onClick={fn}>
-      {`${date} `}
+    <article className={`${styles.card} ${thisMonth}`} onClick={() => fn(true)}>
+      <span className={today}>{`${date} `}</span>
       {index == 0 ? getMonthName(month).slice(0, 3) : ""}
     </article>
   );
